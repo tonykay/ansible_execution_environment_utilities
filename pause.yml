@@ -1,0 +1,18 @@
+---
+
+- name: Simply pause in EE, useful for allowing podman or docker `exec -it <CONTAINER_ID> bash` for testing
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  vars:
+    pause_in_seconds: 3600
+
+
+  tasks:
+
+    - name: Simple ansible.builtin.ping
+      ansible.builtin.pause:
+        seconds: "{{ pause_in_seconds | default(600) }}"
+
+...
