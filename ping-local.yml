@@ -1,0 +1,14 @@
+---
+
+- name: Ping the execution Environment itself
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+
+  tasks:
+
+    - name: Simple ansible.builtin.ping
+      ansible.builtin.ping:
+
+...

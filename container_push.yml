@@ -1,0 +1,32 @@
+---
+
+- name: Simply push an EE
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  vars:
+    ee_source_name: tok_busybox
+    ee_dest_name: quay.io/tonykay/tok_busybox
+
+
+  tasks:
+
+    - name: Push image to remote
+      community.docker.docker_image:
+        name: "{{ ee_source_name }}"
+        repository: "{{ ee_dest_name }}"
+        push: yes
+        source: local
+
+
+
+#      community.docker.docker_image:
+#        name: "{{ ee_source_name }}"
+#        pull: false
+#        source: local
+#        push: yes
+#        push_args:
+#          dest: "{{ ee_dest_name }}"
+
+...
